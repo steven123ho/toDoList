@@ -85,7 +85,7 @@
         android:text="Due Date:"
         android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/dateLabel"
-        app:layout_constraintHorizontal_bias="0.695"
+        app:layout_constraintHorizontal_bias="0.41"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
@@ -130,6 +130,8 @@
         android:text="Date"
         android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/changeDateButton"
+        app:layout_constraintHorizontal_bias="0.907"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -172,7 +174,7 @@
             android:contentDescription="toSettings"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.814"
+            app:layout_constraintHorizontal_bias="0.992"
             app:layout_constraintStart_toEndOf="@+id/taskTitle"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@android:drawable/ic_menu_sort_by_size" />
