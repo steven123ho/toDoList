@@ -3,6 +3,11 @@ package com.example.todolist;
 import java.util.Calendar;
 
 public class Task {
+    private int taskId;
+    private String subject;
+    private String description;
+    private String priority;
+    private Calendar dueDate;
 
 
     //constructor
@@ -19,7 +24,6 @@ public class Task {
         this.taskId = taskId;
     }
 
-    private int taskId;
 
     public String getSubject() {
         return subject;
@@ -29,7 +33,6 @@ public class Task {
         this.subject = subject;
     }
 
-    private String subject;
 
     public String getDescription() {
         return description;
@@ -39,7 +42,6 @@ public class Task {
         this.description = description;
     }
 
-    private String description;
 
     public String getPriority() {
         return priority;
@@ -49,7 +51,6 @@ public class Task {
         this.priority = priority;
     }
 
-    private String priority;
 
     public Calendar getDueDate() {
         return dueDate;
@@ -58,7 +59,5 @@ public class Task {
     public void setDueDate(Calendar dueDate) {
         this.dueDate = dueDate;
     }
-
-    private Calendar dueDate;
 
 }

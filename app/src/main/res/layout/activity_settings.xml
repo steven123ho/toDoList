@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".settings">
+
+
+    <RadioGroup
+        android:id="@+id/sortByRadioGroup"
+        android:layout_width="160dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.199"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sortLabel">
+
+        <RadioButton
+            android:id="@+id/subjectRadio"
+            android:layout_width="142dp"
+            android:layout_height="wrap_content"
+            android:text="Subject" />
+
+        <RadioButton
+            android:id="@+id/priorityRadio"
+            android:layout_width="141dp"
+            android:layout_height="wrap_content"
+            android:text="Priority" />
+
+        <RadioButton
+            android:id="@+id/dueDateRadio"
+            android:layout_width="143dp"
+            android:layout_height="wrap_content"
+            android:text="Due Date" />
+
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/orderByRadioGroup"
+        android:layout_width="136dp"
+        android:layout_height="104dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.178"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/orderLabel"
+        app:layout_constraintVertical_bias="0.003">
+
+        <RadioButton
+            android:id="@+id/ascendingRadio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ascending" />
+
+        <RadioButton
+            android:id="@+id/descendingRadio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Descending"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/orderLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Order By:"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.091"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.428" />
+
+    <TextView
+        android:id="@+id/sortLabel"
+        android:layout_width="177dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="80dp"
+        android:text="Sort Contacts By: "
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/homeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Home"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="25dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

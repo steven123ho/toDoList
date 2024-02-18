@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.text.Editable;
@@ -13,9 +14,11 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import java.util.Calendar;
@@ -29,11 +32,17 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        currentTask = new Task();
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            initTask(extras.getInt("taskID"));
+        } else {
+            currentTask = new Task();
+        }
 
         initTextChangedEvents();
         initSaveButton();
         initChangeDateButton();
+        initListButton();
     }
 
     @Override
@@ -51,6 +60,27 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                 FragmentManager fm = getSupportFragmentManager();
                 DatePickerDialog datePickerDialog = new DatePickerDialog();
                 datePickerDialog.show(fm, "DatePick");
+            }
+        });
+    }
+
+    private void initListButton() {
+        ImageButton listButton = findViewById(R.id.listButton);
+        ImageButton settingButton = findViewById(R.id.settingsButton);
+
+        settingButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, settings.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); //clears the stack trace
+                startActivity(intent);
+            }
+        });
+
+        listButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, taskList.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); //clears the stack trace
+                startActivity(intent);
             }
         });
     }
@@ -110,7 +140,6 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
     }
 
-
     private void initSaveButton () {
 
         Button saveButton = findViewById(R.id.saveBtn);
@@ -118,7 +147,6 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
             @Override
             public void onClick(View v) {
                 boolean wasSuccessful;
-                hideKeyboard();
                 taskDataSource ds = new taskDataSource(MainActivity.this);
                 try {
 
@@ -141,16 +169,38 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         });
     }
 
-    private void hideKeyboard () {
-        InputMethodManager imm = (InputMethodManager) getSystemService(MainActivity.this.INPUT_METHOD_SERVICE);
+    //Gets specific contact from ContactDataSource and uses it to populate the fields
+    private void initTask (int id) {
 
-        EditText subject = findViewById(R.id.subjectInput);
-        imm.hideSoftInputFromWindow(subject.getWindowToken(), 0);
+        taskDataSource ds = new taskDataSource(MainActivity.this);
+        try {
+            ds.open();
+            currentTask = ds.getSpecificTask(id);
+            ds.close();
+        } catch (Exception e) {
+            Toast.makeText(this,"Load Task Failed", Toast.LENGTH_LONG).show();
+        }
 
-        EditText description = findViewById(R.id.descriptionInput);
-        imm.hideSoftInputFromWindow(description.getWindowToken(), 0);
+        EditText editSubject = findViewById(R.id.subjectInput);
+        EditText editDescription = findViewById(R.id.descriptionInput);
+        TextView dueDate = findViewById(R.id.dateLabel);
+
+        editSubject.setText(currentTask.getSubject());
+        editDescription.setText(currentTask.getDescription());
+        dueDate.setText(DateFormat.format("MM/dd/yyyy", currentTask.getDueDate().getTimeInMillis()).toString());
+
+        //setting radio button
+        RadioButton high = findViewById(R.id.radioButtonHigh);
+        RadioButton medium = findViewById(R.id.radioButtonMedium);
+        RadioButton low = findViewById(R.id.radioButtonLow);
+
+        if (currentTask.getPriority() == "High") {
+            high.setChecked(true);
+        } else if (currentTask.getPriority() == "Medium") {
+            medium.setChecked(true);
+        } else {
+            low.setChecked(true);
+        }
     }
-
-
 
 }

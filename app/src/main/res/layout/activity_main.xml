@@ -158,7 +158,7 @@
             android:id="@+id/listButton"
             android:layout_width="56dp"
             android:layout_height="50dp"
-            android:layout_marginStart="4dp"
+            android:layout_marginStart="16dp"
             android:contentDescription="toListofTasks"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"

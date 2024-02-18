@@ -13,7 +13,7 @@ public class taskDBHelper extends SQLiteOpenHelper {
 
     //Database creation sql statement
     private static final String Create_Table_Task =
-            "create table tasks (taskId integer primary key autoincrement, " +
+            "create table tasks (taskId integer unique primary key autoincrement, " +
                     "subject text not null, description text, " +
                     "priority text, dueDate text);";
 

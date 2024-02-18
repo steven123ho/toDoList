@@ -69,37 +69,17 @@ public class taskDataSource {
 
         int lastId;
         try {
-            String query = "Select Max(taskId) from tasks";
+            String query = "Select MAX(taskId) FROM tasks";
             Cursor cursor = database.rawQuery(query, null);
 
             cursor.moveToFirst();
-            lastId =cursor.getInt(0);
+            lastId = cursor.getInt(0);
             cursor.close();
+
         }  catch (Exception e) {
             lastId = -1;
         }
         return lastId;
-    }
-
-    //Putting all names of contacts into ArrayList
-    public ArrayList<String> getTaskName() {
-        ArrayList<String> taskNames = new ArrayList<>();
-
-        try{
-
-            String query = "Select subject from tasks";
-            Cursor cursor = database.rawQuery(query, null);
-
-            cursor.moveToFirst();
-            while (!cursor.isAfterLast()) {
-                taskNames.add(cursor.getString(0));
-                cursor.moveToNext();
-            }
-            cursor.close();
-        } catch (Exception e) {
-            taskNames = new ArrayList<String>();
-        }
-        return taskNames;
     }
 
 
@@ -114,12 +94,13 @@ public class taskDataSource {
             cursor.moveToFirst();
             while (!cursor.isAfterLast()) {
                 newTask = new Task();
-                newTask.setSubject(cursor.getString(0));
-                newTask.setDescription(cursor.getString(1));
-                newTask.setPriority(cursor.getString(2));
+                newTask.setTaskId(cursor.getInt(0));
+                newTask.setSubject(cursor.getString(1));
+                newTask.setDescription(cursor.getString(2));
+                newTask.setPriority(cursor.getString(3));
                 
                 Calendar calendar = Calendar.getInstance();
-                calendar.setTimeInMillis(Long.valueOf(cursor.getString(9)));
+                calendar.setTimeInMillis(Long.valueOf(cursor.getString(4)));
                 newTask.setDueDate(calendar);
                 tasks.add(newTask);
                 cursor.moveToNext();
@@ -137,12 +118,13 @@ public class taskDataSource {
         Cursor cursor = database.rawQuery(query, null);
 
         if (cursor.moveToFirst()) {
+            task.setTaskId(cursor.getInt(0));
             task.setSubject(cursor.getString(1));
             task.setDescription(cursor.getString(2));
             task.setPriority(cursor.getString(3));
 
             Calendar calendar = Calendar.getInstance();
-            calendar.setTimeInMillis(Long.valueOf(cursor.getString(9)));
+            calendar.setTimeInMillis(Long.valueOf(cursor.getString(4)));
             task.setDueDate(calendar);
 
             cursor.close();

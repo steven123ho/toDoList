@@ -1,6 +1,7 @@
 package com.example.todolist;
 
 import android.content.Context;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,29 +21,32 @@ public class taskAdapter extends RecyclerView.Adapter {
     private boolean isDeleting;
     private Context parentContext;
 
-    public class ContactViewHolder extends RecyclerView.ViewHolder {
+    public class TaskViewHolder extends RecyclerView.ViewHolder {
 
         public TextView textSubject;
         public TextView textPriority;
+        public TextView textDueDate;
         public Button deleteButton;
-        public ContactViewHolder(@NonNull View itemView) {
+        public TaskViewHolder(@NonNull View itemView) {
             super(itemView);
             textSubject = (TextView) itemView.findViewById(R.id.textSubject);
-            textPriority = (TextView) itemView.findViewById(R.id.prio);
+            textPriority = (TextView) itemView.findViewById(R.id.textViewPriority);
+            textDueDate = (TextView) itemView.findViewById(R.id.textDueDate);
             deleteButton = itemView.findViewById(R.id.buttonDeleteTask);
             itemView.setTag(this);
             itemView.setOnClickListener(mOnClickListener);
         }
 
-        public TextView getContactTextView() {
-            return textViewContact;
+        public TextView getTextSubject() {
+            return textSubject;
         }
-        public TextView getPhoneTextView() {return textPhone;}
+        public TextView getTextPriority() {return textPriority;}
+        public TextView getTextDueDate() {return textDueDate;}
         public Button getDeleteButton() {return deleteButton;}
     }
 
-    public ContactAdapter (ArrayList<Contact> arrayList, Context context) {
-        contactData = arrayList;
+    public taskAdapter (ArrayList<Task> arrayList, Context context) {
+        taskData = arrayList;
         parentContext = context;
     }
 
@@ -54,14 +58,15 @@ public class taskAdapter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder (@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent, false);
-        return new ContactViewHolder(v);
+        return new TaskViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder (@NonNull RecyclerView.ViewHolder holder, final int position) {
-        ContactViewHolder cvh = (ContactViewHolder) holder;
-        cvh.getContactTextView().setText((contactData.get(position)).getContactName());
-        cvh.getPhoneTextView().setText(contactData.get(position).getPhoneNumber());
+        TaskViewHolder cvh = (TaskViewHolder) holder;
+        cvh.getTextSubject().setText((taskData.get(position)).getSubject());
+        cvh.getTextPriority().setText(taskData.get(position).getPriority());
+        cvh.getTextDueDate().setText(DateFormat.format("MM/dd/yyyy", taskData.get(position).getDueDate()));
 
         if (isDeleting) {
             cvh.getDeleteButton().setVisibility(View.VISIBLE);
@@ -81,14 +86,14 @@ public class taskAdapter extends RecyclerView.Adapter {
     }
 
     private void deleteItem(int position) {
-        Contact contact = contactData.get(position);
-        ContactDataSource ds = new ContactDataSource(parentContext);
+        Task task = taskData.get(position);
+        taskDataSource ds = new taskDataSource(parentContext);
         try {
             ds.open();
-            boolean didDelete = ds.deleteContact(contact.getContactID());
+            boolean didDelete = ds.deleteTask(task.getTaskId());
             ds.close();
             if (didDelete) {
-                contactData.remove(position);
+                taskData.remove(position);
                 notifyDataSetChanged();
             } else {
                 Toast.makeText(parentContext, "Delete Failed!", Toast.LENGTH_LONG).show();
@@ -100,6 +105,6 @@ public class taskAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return contactData.size();
+        return taskData.size();
     }
 }
