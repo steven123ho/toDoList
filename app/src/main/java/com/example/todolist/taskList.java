@@ -90,9 +90,19 @@ public class taskList extends AppCompatActivity {
     //Navigation to new task and to settings
     private void initListButton() {
         Button addButton = findViewById(R.id.addBtn);
+        ImageButton settingButton = findViewById(R.id.settingBtn);
+
         addButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent intent = new Intent(taskList.this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); //clears the stack trace
+                startActivity(intent);
+            }
+        });
+
+        settingButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent intent = new Intent(taskList.this, settings.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); //clears the stack trace
                 startActivity(intent);
             }

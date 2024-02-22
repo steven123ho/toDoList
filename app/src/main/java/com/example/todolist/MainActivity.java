@@ -167,6 +167,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                 }
             }
         });
+        Toast.makeText(MainActivity.this, "This Task has been saved", Toast.LENGTH_LONG).show();
     }
 
     //Gets specific contact from ContactDataSource and uses it to populate the fields
@@ -194,9 +195,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         RadioButton medium = findViewById(R.id.radioButtonMedium);
         RadioButton low = findViewById(R.id.radioButtonLow);
 
-        if (currentTask.getPriority() == "High") {
+        if ("High".equals(currentTask.getPriority())) {
             high.setChecked(true);
-        } else if (currentTask.getPriority() == "Medium") {
+        } else if ("Medium".equals(currentTask.getPriority())) {
             medium.setChecked(true);
         } else {
             low.setChecked(true);
