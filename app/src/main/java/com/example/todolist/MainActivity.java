@@ -157,9 +157,13 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                         if (wasSuccessful) {
                             int newId = ds.getLastTaskId();
                             currentTask.setTaskId(newId);
+                            Toast.makeText(MainActivity.this, "This Task has been saved", Toast.LENGTH_LONG).show();
+
                         }
                     } else {
                         wasSuccessful = ds.updateTask(currentTask);
+                        Toast.makeText(MainActivity.this, "This Task has been Updated", Toast.LENGTH_LONG).show();
+
                     }
                     ds.close();
                 } catch (Exception e) {
@@ -167,7 +171,6 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                 }
             }
         });
-        Toast.makeText(MainActivity.this, "This Task has been saved", Toast.LENGTH_LONG).show();
     }
 
     //Gets specific contact from ContactDataSource and uses it to populate the fields

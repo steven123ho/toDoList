@@ -57,15 +57,16 @@
 
     <Button
         android:id="@+id/changeDateButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="44dp"
+        android:layout_width="111dp"
+        android:layout_height="57dp"
+        android:layout_marginEnd="20dp"
+        android:background="@color/primary"
         android:text="Change Date"
-        app:cornerRadius="8dp"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup"
-        app:layout_constraintVertical_bias="0.086" />
+        app:layout_constraintVertical_bias="0.045" />
 
     <TextView
         android:id="@+id/priorityLabel"
@@ -83,9 +84,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="Due Date:"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@+id/dateLabel"
-        app:layout_constraintHorizontal_bias="0.41"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.093"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
@@ -102,23 +103,23 @@
         <RadioButton
             android:id="@+id/radioButtonHigh"
             android:layout_width="137dp"
-            android:layout_height="wrap_content"
+            android:layout_height="49dp"
             android:text="High"
-            android:textColor="@color/design_default_color_error" />
+            android:textColor="@color/black" />
 
         <RadioButton
             android:id="@+id/radioButtonMedium"
             android:layout_width="128dp"
-            android:layout_height="wrap_content"
+            android:layout_height="57dp"
             android:text="Medium"
-            android:textColor="#FF5722" />
+            android:textColor="#000000" />
 
         <RadioButton
             android:id="@+id/radioButtonLow"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
+            android:layout_width="90dp"
+            android:layout_height="54dp"
             android:text="Low"
-            android:textColor="#8BC34A" />
+            android:textColor="#000000" />
     </RadioGroup>
 
     <TextView
@@ -128,16 +129,16 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
         android:text="Date"
-        android:textSize="20sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/changeDateButton"
-        app:layout_constraintHorizontal_bias="0.907"
+        app:layout_constraintHorizontal_bias="0.812"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="417dp"
-        android:layout_height="60dp"
-        android:background="@color/material_dynamic_neutral10"
+        android:layout_height="47dp"
+        android:background="#00233A"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -146,19 +147,21 @@
             android:id="@+id/taskTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
+            android:layout_marginStart="24dp"
             android:text="Add Task"
             android:textColor="#FFFFFF"
-            android:textSize="34sp"
+            android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/listButton"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.4" />
 
         <ImageButton
             android:id="@+id/listButton"
-            android:layout_width="56dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="16dp"
+            android:layout_width="44dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="24dp"
+            android:background="#ABFFFFFF"
             android:contentDescription="toListofTasks"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -167,8 +170,8 @@
 
         <ImageButton
             android:id="@+id/settingsButton"
-            android:layout_width="64dp"
-            android:layout_height="58dp"
+            android:layout_width="74dp"
+            android:layout_height="64dp"
             android:layout_marginEnd="4dp"
             android:background="#00FFFFFF"
             android:contentDescription="toSettings"
@@ -186,7 +189,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="64dp"
+        android:background="@color/primary"
         android:text="Save"
+        android:textColor="#FBFBFB"
         app:cornerRadius="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

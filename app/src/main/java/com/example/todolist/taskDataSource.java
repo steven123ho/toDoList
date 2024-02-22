@@ -87,7 +87,25 @@ public class taskDataSource {
         ArrayList<Task> tasks = new ArrayList<Task>();
 
         try {
-            String query = "Select * FROM tasks ORDER BY " + sortField + " " + sortOrder;
+
+            String query;
+            if (sortField.equals("priority") && sortOrder.equals("ASC")) {
+                query = "Select * FROM tasks ORDER BY CASE " +
+                        "WHEN priority = 'Low' THEN 1 " +
+                        "WHEN priority = 'Medium' THEN 2 " +
+                        "WHEN priority = 'High' THEN 3 " +
+                        "ELSE 4 END";
+            } else if (sortField.equals("priority") && sortOrder.equals("DESC")) {
+                query = "Select * FROM tasks ORDER BY CASE " +
+                        "WHEN priority = 'High' THEN 1 " +
+                        "WHEN priority = 'Medium' THEN 2 " +
+                        "WHEN priority = 'Low' THEN 3 " +
+                        "ELSE 4 END";
+            } else {
+                query = "Select * FROM tasks ORDER BY " + sortField + " " + sortOrder;
+            }
+
+
             Cursor cursor = database.rawQuery(query, null);
 
             Task newTask;

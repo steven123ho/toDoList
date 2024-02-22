@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -78,15 +77,15 @@ public class settings extends AppCompatActivity {
                 RadioButton nameRadio = findViewById(R.id.subjectRadio);
                 RadioButton cityRadio = findViewById(R.id.priorityRadio);
                 if (nameRadio.isChecked()) {
-                    getSharedPreferences("MyContactListPreferences",
+                    getSharedPreferences("MyTaskListPreferences",
                             Context.MODE_PRIVATE).edit()
                             .putString("sortfield", "subject").apply();
                 } else if (cityRadio.isChecked()) {
-                    getSharedPreferences("MyContactListPreferences",
+                    getSharedPreferences("MyTaskListPreferences",
                             Context.MODE_PRIVATE).edit()
                             .putString("sortfield","priority").apply();
                 } else {
-                    getSharedPreferences("MyContactListPreferences",
+                    getSharedPreferences("MyTaskListPreferences",
                             Context.MODE_PRIVATE).edit()
                             .putString("sortfield", "dueDate").apply();
                 }
